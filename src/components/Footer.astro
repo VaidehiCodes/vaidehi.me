@@ -24,11 +24,14 @@ const { status, email_label, email_url, github_label, github_url, x_label, x_url
     <div>
         <span class="opacity-70 lowercase">{status.value}</span>
     </div>
-    <div class="flex gap-4 [&_a]:opacity-70 [&_a]:hover:opacity-100 [&_a]:transition-colors [&_a]:duration-200 [&_a]:lowercase">
+    <div class="flex gap-4 [&_a]:opacity-70 [&_a]:hover:opacity-100 [&_a]:transition-colors [&_a]:duration-200 [&_a]:lowercase [&_button]:opacity-70 [&_button]:hover:opacity-100 [&_button]:transition-colors [&_button]:duration-200 [&_button]:lowercase [&_button]:bg-transparent [&_button]:border-0 [&_button]:p-0 [&_button]:cursor-pointer">
         {email_url && email_label && (
-            <a href={email_url.value}>
+            <button
+                type="button"
+                data-copy-email={email_url.value.replace(/^mailto:/i, "")}
+            >
                 {email_label.value}
-            </a>
+            </button>
         )}
         
         {github_url && github_label && (
@@ -49,4 +52,54 @@ const { status, email_label, email_url, github_label, github_url, x_label, x_url
             </a>
         )}
     </div>
+
+    <div
+        data-copy-toast
+        class="fixed bottom-6 left-1/2 -translate-x-1/2 rounded-md border border-border bg-secondary text-secondary-foreground px-3 py-1 text-xs lowercase opacity-0 pointer-events-none transition-opacity duration-200"
+        aria-live="polite"
+    >
+        copied
+    </div>
 </footer>
+
+<script is:inline>
+    const copyEmailButtons = document.querySelectorAll("[data-copy-email]");
+    const copyToast = document.querySelector("[data-copy-toast]");
+    let hideCopyToastTimer;
+
+    const showCopyToast = () => {
+        if (!copyToast) {
+            return;
+        }
+
+        copyToast.classList.remove("opacity-0");
+
+        clearTimeout(hideCopyToastTimer);
+        hideCopyToastTimer = window.setTimeout(() => {
+            copyToast.classList.add("opacity-0");
+        }, 1400);
+    };
+
+    copyEmailButtons.forEach((button) => {
+        if (button.dataset.copyBound === "true") {
+            return;
+        }
+
+        button.dataset.copyBound = "true";
+
+        button.addEventListener("click", async () => {
+            const email = button.getAttribute("data-copy-email");
+
+            if (!email) {
+                return;
+            }
+
+            try {
+                await navigator.clipboard.writeText(email);
+                showCopyToast();
+            } catch {
+                window.location.href = `mailto:${email}`;
+            }
+        });
+    });
+</script>

@@ -12,11 +12,11 @@ interface Props {
 const { id, heading, message } = Astro.props as Props;
 ---
 
-<section id={(id ?? heading.value).toLowerCase()} class="mt-20 scroll-mt-50 text-center">
+<section id={(id ?? heading.value).toLowerCase()} class="mt-20 scroll-mt-50 text-left">
     <I18NDebug key={heading.key}>
-        <h2 class="opacity-50 mb-3 lowercase">{heading.value}</h2>
+        <h2 class="opacity-50 mb-3 uppercase">{heading.value}</h2>
     </I18NDebug>
     <I18NDebug key={message.key}>
-        <p class="opacity-70 lowercase max-w-2xl mx-auto">{message.value}</p>
+        <p class="opacity-70 lowercase max-w-2xl">{message.value}</p>
     </I18NDebug>
 </section>

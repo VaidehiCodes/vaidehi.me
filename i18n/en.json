@@ -24,19 +24,19 @@
   "books": {
     "title": "Books",
     "item_1": {
-      "period": "Jan 26 — now",
+      "period": "currently",
       "book": "The Handmaid's Tale",
       "author": "Margaret Atwood",
       "description": "not too many thoughts on this one yet. wait for it"
     },
     "item_2": {
-      "period": "June 25 — Jan 26",
-      "book": "Hannbal Rising",
+      "period": "previously",
+      "book": "Hannibal Rising",
       "author": "Thomas Harris",
       "description": "eery, heartbreaking and completely captivating. Once again, absolutely devastating and beautifully written."
     },
     "item_3": {
-      "period": "Best of 2025",
+      "period": "best of 2025",
       "book": "Babel: Or the Necessity of Violence",
       "author": "R.F. Kuang",
       "description": "'the last capitalist we hang will be the one who sold us the rope.' a brilliant and harrowing exploration of colonialism, capitalism, and resistance."

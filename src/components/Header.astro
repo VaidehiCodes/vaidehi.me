@@ -3,10 +3,9 @@ import I18NDebug from "@ariaskit/astro-i18n/I18NDebug.astro";
 
 interface Props {
     nav:{path:string;text:string}[];
-    currentLocale:string
 }
 
-const { nav, currentLocale } = Astro.props as Props
+const { nav } = Astro.props as Props
 
 ---
 
@@ -17,7 +16,7 @@ const { nav, currentLocale } = Astro.props as Props
                 <I18NDebug key={item.text}>
                     <a
                         class="opacity-50 transition-all duration-200 hover:opacity-100 text-[1rem] md:text-[0.85rem]"
-                        href={`/${currentLocale}/${item.path}`}
+                        href={item.path}
                     >
                         {item.text}
                     </a>
