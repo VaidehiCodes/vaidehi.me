@@ -28,7 +28,7 @@ const { name, title, p1, p2, p3 } = Astro.props as Props;
             <p class="opacity-50">{p2.value}</p>
         </I18NDebug>
         <I18NDebug key={p3.key}>
-            <p class="opacity-50" set:html={p3.value} />
+            <p class="text-muted-foreground [&_a]:transition-all [&_a]:duration-200 [&_a:hover]:text-green-500" set:html={p3.value} />
         </I18NDebug>
     </div>
 </section>
